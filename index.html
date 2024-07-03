@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IKUN之家</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Probably the most complete UI kit out there. Multiple functionalities and controls added,  extended color palette and beautiful typography, designed as its own extended version of Bootstrap at  the highest level of quality.">
+    <meta name="author" content="Webpixels">
+    <title>Boomerang UI Kit - Free Bootstrap Framework by Webpixels</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
+    <!-- Theme CSS -->
+    <link type="text/css" href="./assets/css/theme.css" rel="stylesheet">
+    <!-- Demo CSS - No need to use these in your project -->
+    <link type="text/css" href="./assets/css/demo.css" rel="stylesheet">
+    <style>
+        #videoPlayer {
+            display: none;
+            width: 100%;
+        }
+        body {
+            background-image: url("3249042667/scene.pkg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .videocontainer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1; /* 确保视频层位于页面内容的下方 */
+        }
+        #bgVideo {
+            min-width: 100%; /* 使视频宽度始终至少为100% */ 
+            min-height: 100%; /* 使视频高度始终至少为100% */
+            object-fit: cover; /* 保持视频的宽高比，使视频铺满整个容器 */
+            position: absolute;
+        }
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s;
+        }
+        .image-container:hover img {
+            transform: scale(1.1);
+        }
+        .image-container p {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            transform: scale(0.5);
+            animation: explode 0.7s forwards;
+        }
+        @keyframes explode {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .basketball {
+            position: absolute;
+            width: 200px; /* 可根据实际图片大小调整 */
+            height: 200px;
+            background-image: url('篮球.png'); /* 将basketball.png替换为你的篮球图片路径 */
+            background-size: contain;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            animation: fall 2s forwards;
+            z-index: 9999; /* 确保篮球在最上层 */
+        }
+        * {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #e9f4d5;
+}
+.clearfix:before,.clearfix:after {
+    content:"";
+    display: table;
+}
+.clearfix::after {
+    clear:both;
+}
+.clearfix {
+    zoom:1;
+}
+/* 申明版心类，只要像放到中间调用即可 */
+.w {
+    width: 1200px;
+    margin: 0  auto;
+}
+/* 只是写错了 */
+.s {
+    width: 1200px;
+    margin: 0  auto;
+}
+/* 只要是页面中的所有li都要清除样式 */
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+.header {
+    height: 52px;
+    background-color: #D6EFA8;
+    margin: 30px auto;
+}
+.logo {
+    float: left;
+    width: 133px;
+    height: 52px;
+    background-color: purple;
+}
+.nav {
+    float: left;
+    margin-left: 60px;
+}
+.nav ul li {
+    float: left;
+    margin-right: 20px;
+    padding: 13px;
+    border: 1px solid lightblue;
+ 
+}
+.nav ul li a {
+    font-size: 18px;
+    color: black;
+}
+.nav ul li:hover {
+    border-bottom: 3px solid lightblue;
+}
+.search {
+    float: left;
+    /* search的width是412px */
+    width: 412px;
+    height: 52px;
+    background-color: #ceed94;
+    margin-left: 50px;
+}
+.search input {
+    float: left;
+    /* input的width是345px */
+    width: 345px;
+    height: 47px;
+   border: 2px solid #ceed94;
+   color: #bfbfbf;
+   font-size: 14px;
+   padding-left: 15px;
+}
+.search button {
+    float: left;
+    /* 那为什么button的width是50px就会掉下来了 */
+    width: 45px;
+    height: 52px;
+    background: url(./image/ikunsearch.png);
+    /* 按钮有边框需要手动取出 */
+    border: 0;
+}
+div .user {
+    float: left;
+    line-height: 52px;
+    margin-left: 50px;
+}
+div p {
+    float: right;
+    margin-left: 20px;
+}
+.banner {
+    height: 421px;
+    background-color: #B3CBEF;
+ 
+}
+.banner .w {
+    height: 421px;
+    background-image: url(./image/handsome.jpg);
+    background-repeat: no-repeat top center;
+    background-size: 1200px 421px;
+}
+.subnav {
+    float: left;
+    width: 190px;
+    height: 421px;
+    background: rgba(172, 211, 240, .5);
+}
+.w .subnav ul li a {
+    font-size: 20px;
+    color:rgb(116, 118, 120);
+}
+.w .subnav ul li {
+    /* background-color: rgb(172, 211, 240); */
+    height: 47px;
+    padding: 0 20px;
+}
+.w .subnav ul li:hover {
+    background: #ceed94;
+}
+.subnav ul li a span {
+    float: right;
+}
+.course {
+    float: right;
+    margin-top: 50px;
+    width: 230px;
+    height: 340px;
+    background-color: rgba(172, 211, 240,.3);
+}
+.course h2 {
+    height: 48px;
+    background-color: rgba(172, 211, 240);
+    text-align: center;
+    line-height: 48px;
+    font-size: 18px;
+    color: #fff;
+}
+.bd {
+    padding: 0 20px;
+}
+.course .bd ul li {
+    padding: 20px 0;
+    border-bottom: 2px solid #fff;
+}
+.course .bd ul li h4{
+    padding-left: 20px;
+    color: #4e4e4e;
+}
+.course .bd ul li:hover {
+    background-color: #ceed94;
+}
+.course .bd ul li p {
+    float: left;
+    color: #a5a5a5;
+ 
+}
+.course .bd ul li p .last {
+    margin-bottom: 30px;
+}
+.course .bd   a {
+        display: block;
+        border:1px solid  rgb(123, 187, 236);
+        padding-left: 20px;
+        color: whitesmoke;
+        height: 38px;
+        line-height: 38px;
+        font-size: 16px;
+}
+.goods {
+    height: 60px;
+    background-color:whitesmoke; 
+    box-shadow: 0 4px 3px 3px rgba(0,0,0,.3);
+    margin-top: 10px;
+    line-height: 60px;
+}
+.goods h3 {
+    float: left;
+    margin-left: 30px;
+    color: #cfe5a7;
+}
+.goods ul {
+    float: left;
+}
+.goods ul li {
+    float: left;
+}
+.goods ul li a {
+    padding: 0 30px;
+    color: #050505;
+    border-left: 2px solid #ceed94 ;
+}
+.mod {
+    float: right;
+    margin-right: 30px;
+    color: #cfe5a7;
+}
+.box {
+    margin-top: 30px;
+}
+.box-hd {
+    height: 45px;
+}
+.box-hd h3 {
+    float: left;
+    font-size: 20px;
+    color: #494949;
+}
+.box-hd a {
+    float: right;
+    font-size: 12px;
+    color: #a5a5a5;
+}
+.box-bd ul  {
+    width: 1225px;
+}
+.box-bd ul li {
+    float: left;
+    width: 225px;
+    height: 320px;
+    background-color: whitesmoke;
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+.box-bd ul li img {
+    width: 100%;
+    height: 200px;
+}
+.box-bd ul li h4 {
+    margin: 20px 20px 20px 25px;
+    font-size: 14px;
+    color: plum;
+    /* 给定标题不加粗 */
+    font-weight: 400;
+ 
+}
+.box-bd ul li .info {
+    margin-left: 20px;
+    color: #999;
+    font-size: 12px;
+}
+.footer {
+    height: 600px;
+    background-color:  #D6EFA8;
+}
+.footer .s {
+    padding-top: 35px;
+}
+.footer .s .copyleft img {
+    width: 168px;
+    height: 220px;
+}
+.copyleft {
+    float: left;
+}
+.link {
+    float: right;
+}
+.footer .s .copyleft  .name {
+    float: none;
+    font-size: 12px;
+    color: #666;
+    margin: 20px 0 15px 0 ;;
+}
+.footer .s .copyleft .app {
+    display: block;
+    width: 118px;
+    height: 33px;
+    border: 2px solid #00a4ff;
+    line-height: 33px;
+    color:#00a4ff ;
+    text-align: center;
+    font-size: 16px;
+   
+}
+.link dl {
+    float: left;
+}
+.link dl dt {
+    margin-right: 150px;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+.link dl dd a {
+    font-size: 12px;
+    color: #333;
+}
+
+</style>
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-transparent navbar-dark bg-dark py-4">
+    <div class="container">
+        <a class="navbar-brand" href="./"><strong><img src="篮球1.png" style="width: 80px;height: 80PX;"></strong> IKUN</a>
+        <button class="navbar-toggler" type="button" data-action="offcanvas-open" data-target="#navbar_main" aria-controls="navbar_main" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse offcanvas-collapse" id="navbar_main">
+            <ul class="navbar-nav ml-auto align-items-lg-center">
+                <h6 class="dropdown-header font-weight-600 d-lg-none px-0">Menu</h6>
+                <li class="nav-item active">
+                    <a class="nav-link" href="./index.html">首页</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">请选择你的英雄</a>
+                    <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                        <a class="dropdown-item" href="劳大.jpg">捞大</a>
+                        <a class="dropdown-item" href="霉西.jpg">霉西</a>
+                        <a class="dropdown-item" href="霍金.webp">货金</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="三幻神.jpg">三幻神合体</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://val.qq.com/act/a20230801download/index.html?adtag=1139" target="_blank" class="nav-link d-lg-none">启动</a>
+                    <a href="https://val.qq.com/act/a20230801download/index.html?adtag=1139" target="_blank" class="btn btn-sm bg-white d-none d-lg-inline-flex">启动</a>
+                </li>
+                <div class="dropdown-divider d-lg-none my-4"></div>
+                <h6 class="dropdown-header font-weight-600 d-lg-none px-0">Social Media</h6>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-icon" href="https://www.douyin.com/" target="_blank"><img src="抖音.png" style="height: 20px; width: 20px;"><span class="ml-2 d-lg-none">抖音</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class=                    "nav-link nav-link-icon" href="https://www.xiaohongshu.com/explore" target="_blank"><img src="小红书.png" style="height: 23px; width: 23px;"><span class="ml-2 d-lg-none">小红书</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-icon" href="https://china.nba.cn/index" target="_blank"><img src="篮球.png" style="height: 22px; width: 22px;"><span class="ml-2 d-lg-none">NBA</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-icon" href="https://wangjunhao810.github.io/" target="_blank"><img src="github-fill.png" style="height: 25px; width: 25px;"><span class="ml-2 d-lg-none">Github</span></a>
+                </li>
+                <a href="https://wangjunhao810.github.io/kunkunchidan1.0/%E5%9D%A4%E5%9D%A4%E5%90%83%E8%9B%8B.html">
+                <button type="button" class="btn btn-primary btn-animated btn-animated-x">
+                    <span class="btn-inner--visible">俺的作业</span>
+                    <span class="btn-inner--hidden"><i class="fas fa-arrow-right"></i></span>
+                </button>
+                </a>
+            </ul>
+        </div>
+    </div>
+</nav>
+<main class="main">
+    <section class="spotlight parallax bg-cover bg-size--cover" data-spotlight="fullscreen">
+        <div class="videocontainer">
+            <video autoplay muted loop id="bgVideo">
+                <source src="doggo2.mp4" type="video/mp4">
+                您的浏览器不支持HTML5视频。
+            </video>
+            <div class="spotlight-holder py-lg pt-lg-xl">
+                <div class="container d-flex align-items-center no-padding">
+                    <div class="col">
+                        <div class="row cols-xs-space align-items-center text-center text-md-left justify-content-center">
+                            <div class="col-7">
+                                <div class="text-center mt-5">
+                                    <img id="videoThumbnail" src="蔡徐坤-copy.png" alt="Video Thumbnail" onclick="playVideo()">
+                                    <video id="videoPlayer" controls>
+                                        <source src="https://upos-sz-mirror08c.bilivideo.com/upgcxcode/36/67/778506736/778506736-1-16.mp4?e=ig8euxZM2rNcNbRVhwdVhwdlhWdVhwdVhoNvNC8BqJIzNbfq9rVEuxTEnE8L5F6VnEsSTx0vkX8fqJeYTj_lta53NCM=&uipk=5&nbs=1&deadline=1719995751&gen=playurlv2&os=08cbv&oi=1879877487&trid=e0ffa7a57d20477d9dc9d998b0a68fe7T&mid=426099299&platform=html5&og=hw&upsig=b20d4483ac8dc0130ba71420bfcb5a71&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform,og&bvc=vod&nettype=0&bw=53593&orderid=0,1&buvid=&build=0&mobi_app=&f=T_0_0&logo=80000000" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <script>
+                                        function playVideo() {
+                                            var videoPlayer = document.getElementById('videoPlayer');
+                                            videoPlayer.play();
+                                            videoPlayer.style.display = 'block';
+                                            document.getElementById('videoThumbnail').style.display = 'none';
+                                        }
+                                    </script>
+                                    <h2 class="heading display-4 font-weight-400 text-white mt-5 animated" data-animation-in="fadeInUp" data-animation-delay="2000">
+                                        <span class="font-weight-700">我是谁？？？</span> 
+                                    </h2>
+                                    <p class="lead text-white mt-3 lh-180 c-white animated" data-animation-in="fadeInUp" data-animation-delay="2500">
+                                        Can you play basketball, brother <strong class="text-white">IKUN</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- New Section with 3 expanding images -->
+    <section class="py-5">
+        
+        <table class="table table-hover table-cards align-items-center">
+            <thead>
+                <tr>
+                    <th scope="col">姓名</th>
+                    <th scope="col">英文名</th>
+                    <th scope="col">名人名言</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-white">
+                    <th scope="row">
+                        <div class="media align-items-center">
+                            <img src="坤坤-2.webp" class="avatar avatar-lg mr-3">
+                            <div class="media-body">
+                                <h6 class="h5 font-weight-normal mb-0">蔡徐坤</h6>
+                                <span class="font-weight-normal text-muted">中国内地男歌手、演员、原创音乐制作人</span>
+                            </div>
+                        </div>
+                    </th>
+                    <td>KUN</td>
+                    <td>你干嘛~哈哈~哎呦</td>
+                </tr>
+                <tr class="table-divider"></tr>
+                <tr class="bg-white" >
+                    <th scope="row">
+                        <div class="media align-items-center" >
+                            <img src="科比-2.webp" class="avatar avatar-lg mr-3" >
+                            <div class="media-body">
+                                <h6 class="h5 font-weight-normal mb-0" >科比·布莱恩特</h6>
+                                <span class="font-weight-normal text-muted">美国已故篮球运动员</span>
+                            </div>
+                        </div>
+                    </th>
+                    <td>Kobe Bryant</td>
+                    <td>Man,HaHaHa,What Can I Say? Mamba Out!</td>
+                </tr>
+            </tr>
+            <tr class="table-divider"></tr>
+            <tr class="bg-white">
+                <th scope="row">
+                    <div class="media align-items-center">
+                        <img src="梅西-2.webp" class="avatar avatar-lg mr-3">
+                        <div class="media-body">
+                            <h6 class="h5 font-weight-normal mb-0">利昂内尔·梅西</h6>
+                            <span class="font-weight-normal text-muted">阿根廷职业足球运动员</span>
+                        </div>
+                    </div>
+                </th>
+                <td>Lionel Messi</td>
+                <td>给你俩窝窝</td>
+            </tr>
+        </tr>
+        <tr class="table-divider"></tr>
+        <tr class="bg-white">
+            <th scope="row">
+                <div class="media align-items-center">
+                    <img src="霍金-2.webp" class="avatar avatar-lg mr-3">
+                    <div class="media-body">
+                        <h6 class="h5 font-weight-normal mb-0">斯蒂芬·威廉·霍金</h6>
+                        <span class="font-weight-normal text-muted">理论物理学家、宇宙学家、科学思想家</span>
+                    </div>
+                </div>
+            </th>
+            <td>Stephen William Hawking</td>
+            <td>无论命运有多坏，人总应有所作为，有生命就有希望。</td>
+        </tr>
+                <tr class="table-divider"></tr>
+            </tbody>
+        </table>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="image-container">
+                        <p>坤坤</p>
+                        <a href="https://baike.baidu.com/link?url=-lpbO6L_RIW7QSJFadM1eBoMeTUt7IVXKHxCEqGwx8SV9aAwLLEuedis-aANTwvdptop6PA0QKBj5Pb0h1eV8SnaQS4XZeU_ga5fEDq2O0G"><img src="坤.jpeg" alt="Image 1"></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="image-container">
+                        <p>科比</p>
+                        <a href="https://baike.baidu.com/item/%E7%A7%91%E6%AF%94%C2%B7%E5%B8%83%E8%8E%B1%E6%81%A9%E7%89%B9/318773?fr=ge_ala"><img src="劳大.jpg" alt="Image 2"></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="image-container">
+                        <p>梅西</p>
+                        <a href="https://baike.baidu.com/item/%E5%88%A9%E6%98%82%E5%86%85%E5%B0%94%C2%B7%E6%A2%85%E8%A5%BF/3965248?fr=ge_ala"><img src="梅西呦西.jpeg" alt="Image 3"></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="image-container">
+                        <p>霍金</p>
+                        <a href="https://baike.baidu.com/item/%E6%96%AF%E8%92%82%E8%8A%AC%C2%B7%E5%A8%81%E5%BB%89%C2%B7%E9%9C%8D%E9%87%91/950423?fr=ge_ala"><img src="霍金.webp" alt="Image 4"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="s">
+                <div class="copyleft">
+                    <img src="坤坤-3.webp">
+                    <div class="name">两耳不闻窗外事，一心只为蔡徐坤。
+     
+                     追梦少年不失眠，<br>未来可期蔡徐坤。
+                        
+                    向阳花木每逢春，ikun一直爱坤坤。</div>
+                    <a href="https://weibo.com/u/1776448504" class="app">关爱蔡徐坤</a>
+                </div>
+                <div class="link">
+                    <dl>
+                        <dt>关于蔡徐坤</dt>
+                        <dd><a href="https://www.bilibili.com/video/BV1pY411e7yo/">为什么成鸡</a></dd>
+                        <dd><a href="https://wenda.so.com/q/1681900121212572">成只因日期</a></dd>
+                        <dd><a href="https://www.bilibili.com/video/BV1ct4y1n7t9/">成只因作品</a></dd>
+                        <dd><a href="https://www.bilibili.com/video/BV1ct4y1n7t9/">只因你太美</a></dd>
+                        <dd><a href="https://www.bilibili.com/video/BV1e84y1p7ZQ/?spm_id_from=333.337.search-card.all.click">彩虹可爱小只因</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>关于科比</dt>
+                        <dd><a href="https://www.bilibili.com/video/BV1ha4y1A7RJ/?spm_id_from=333.337.search-card.all.click">牢大是什么梗</a></dd>
+                        <dd><a href="https://www.bilibili.com/video/BV16y421v7hE/?spm_id_from=333.337.search-card.all.click">Man！曼巴out是什么梗？</a></dd>
+                        <dd><a href="https://www.bilibili.com/video/BV1Pb4y1y7tN/?spm_id_from=333.337.search-card.all.click">《Mamba Out》</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>关于梅西</dt>
+                        <dd><a href="https://www.bilibili.com/video/BV1U14y1N7aN/?spm_id_from=333.337.search-card.all.click">给你俩窝窝是什么梗</a></dd>
+                        <dd><a href="https://www.bilibili.com/video/BV1Kx4y1f78e/?spm_id_from=333.337.search-card.all.click">梅西为什么塌了？他为什么瞧不起中国？？</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>关于霍金</dt>
+                        <dd><a href="https://www.bilibili.com/video/BV1y94y1M75c/?spm_id_from=333.337.search-card.all.click">萝莉岛</a></dd>
+                        <dd><a href="https://www.bilibili.com/video/BV1Gi421Q7jj/?spm_id_from=333.337.search-card.all.click">后期霍金</a></dd>
+                    </dl>
+                </div>
+            </div>
+    
+    </section>
+</main>
+<!-- Firework and Basketball effect -->
+<script>
+    const basketballs = [];
+
+class Basketball {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.radius = 25; // Half of the width/height of the basketball
+        this.element = document.createElement('div');
+        this.element.className = 'basketball';
+        document.body.appendChild(this.element);
+        this.init();
+        basketballs.push(this); // Add the basketball to the array
+    }
+
+    init() {
+        this.element.style.position = 'absolute';
+        this.element.style.left = this.x + 'px';
+        this.element.style.top = this.y + 'px';
+        this.element.style.width = '50px';
+        this.element.style.height = '50px';
+        this.element.style.background = 'url("篮球.png") no-repeat center center / contain';
+        this.element.style.zIndex = '9999';
+
+        // Physics properties
+        this.velocityX = (Math.random() - 0.8) * 2;
+        this.velocityY = (Math.random() - 0.8) * 2;
+        this.gravity = 0.8;
+        this.bounce = 0.8;
+
+        // Rotation properties
+        this.rotation = 0;
+        this.angularVelocity = 0;
+
+        this.update();
+    }
+
+    update() {
+        this.velocityY += this.gravity;
+        this.x += this.velocityX;
+        this.y += this.velocityY;
+
+        // Update rotation
+        this.rotation += this.angularVelocity;
+
+        // Wall collision
+        if (this.x + this.radius * 2 > window.innerWidth || this.x < 0) {
+            this.velocityX *= -this.bounce;
+            if (this.x < 0) this.x = 0;
+            if (this.x + this.radius * 2 > window.innerWidth) this.x = window.innerWidth - this.radius * 2;
+        }
+
+        // Floor collision
+        if (this.y + this.radius * 2 > window.innerHeight) {
+            this.y = window.innerHeight - this.radius * 2;
+            this.velocityY *= -this.bounce;
+            // Damping
+            if (Math.abs(this.velocityY) < 1) {
+                basketballs.splice(basketballs.indexOf(this), 1);
+                this.element.remove();
+                return;
+            }
+        }
+
+        // Update element position and rotation
+        this.element.style.left = this.x + 'px';
+        this.element.style.top = this.y + 'px';
+        this.element.style.transform = `rotate(${this.rotation}deg)`;
+
+        // Check for collisions with other basketballs
+        for (let other of basketballs) {
+            if (other !== this) {
+                let dx = this.x - other.x;
+                let dy = this.y - other.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < this.radius * 2) {
+                    // Resolve collision
+                    let angle = Math.atan2(dy, dx);
+                    let targetX = this.x + Math.cos(angle) * this.radius * 2;
+                    let targetY = this.y + Math.sin(angle) * this.radius * 2;
+                    let ax = (targetX - other.x) * 0.5;
+                    let ay = (targetY - other.y) * 0.5;
+
+                    this.velocityX -= ax;
+                    this.velocityY -= ay;
+                    other.velocityX += ax;
+                    other.velocityY += ay;
+
+                    // Add angular velocity based on collision
+                    let collisionImpact = Math.sqrt(ax * ax + ay * ay);
+                    this.angularVelocity += collisionImpact * 0.1;
+                    other.angularVelocity -= collisionImpact * 0.1;
+
+                    // Ensure they don't overlap
+                    let overlap = this.radius * 2 - distance;
+                    this.x += Math.cos(angle) * overlap / 2;
+                    this.y += Math.sin(angle) * overlap / 2;
+                    other.x -= Math.cos(angle) * overlap / 2;
+                    other.y -= Math.sin(angle) * overlap / 2;
+                }
+            }
+        }
+
+        requestAnimationFrame(this.update.bind(this));
+    }
+}
+
+// Create basketball on click
+document.addEventListener('click', (event) => {
+    new Basketball(event.pageX - 25, event.pageY - 25);
+});
+
+</script>
+
+
+
+<!-- Core -->
+<script src="./assets/vendor/jquery/jquery.min.js"></script>
+<script src="./assets/vendor/popper/popper.min.js"></script>
+<script src="./assets/js/bootstrap/bootstrap.min.js"></script>
+<!-- FontAwesome 5 -->
+<script src="./assets/vendor/fontawesome/js/fontawesome-all.min.js" defer></script>
+<!-- Page plugins -->
+<script src="./assets/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+<script src="./assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+<script src="./assets/vendor/input-mask/input-mask.min.js"></script>
+<script src="./assets/vendor/nouislider/js/nouislider.min.js"></script>
+<script src="./assets/vendor/textarea-autosize/textarea-autosize.min.js"></script>
+<!-- Theme JS -->
+<script src="./assets/js/theme.js"></script>
+</body>
+</html>
